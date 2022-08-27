@@ -116,10 +116,28 @@ difference()
 				translate([0, usbHolePosition, (usbHeight-2)/2])
 				cube([10, usbWide, usbHeight], center=true);
 			}
+
+            translate([0,wide/2+4,height/2-4.5]) {#cylinder(h=height, r=3.5);}
+            translate([0,-wide/2-4,height/2-4.5]) {cylinder(h=height, r=3.5); }
+            translate([0,wide/2+4,-9]) {cylinder(h=99, r=2);            }
+            translate([0,-wide/2-4,-9]) {cylinder(h=99, r=2);}
 		}
 	}
 }
 
+difference(){
+    union() {
+        translate([-10,-wide/2-10+2,0]) cube([20,8,height/2]);
+        translate([-10,wide/2-2+2,0]) cube([20,8,height/2]);
+
+    }
+    union() {
+        translate([0,wide/2+4,height/2-4.5]) {cylinder(h=height, r=3.5);}
+        translate([0,-wide/2-4,height/2-4.5]) {cylinder(h=height, r=3.5); }
+        translate([0,wide/2+4,-9]) {cylinder(h=99, r=2);            }
+        translate([0,-wide/2-4,-9]) {cylinder(h=99, r=2);}
+    }
+}
 //------------------------------------------------------------------------- ADD PCB LEGS
 // Translate to pcbPositionX	
 translate([-pcbPositionX, -pcbWide/2, 0])
